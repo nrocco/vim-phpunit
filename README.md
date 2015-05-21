@@ -17,7 +17,15 @@ And then run:
 
 ## configuration
 
-At the moment nothing is configurable yet, but this will come.
+The path to phpunit is configurable by setting this in your `.vimrc`:
+
+    let g:phpunit_bin = 'phpunit'
+
+
+The default options for phpunit is configurable by setting this in your `.vimrc`:
+
+    let g:phpunit_opts = '--bootstrap somefile.php -c app'
+
 
 
 ## License

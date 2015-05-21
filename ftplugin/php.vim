@@ -1,5 +1,14 @@
-" TODO: make path to phpunit configurable
-" TODO: make options to phpunit configurable
+" The path to phpunit is configurable
+if !exists("g:phpunit_bin")
+    let g:phpunit_bin = 'bin/phpunit'
+endif
+
+
+" The default options for phpunit is configurable
+if !exists("g:phpunit_opts")
+    let g:phpunit_opts = '-c app'
+endif
+
 
 " Get the current function the cursor is focussed on and run it through phpunit.
 function! PhpunitTestFunction()
@@ -16,7 +25,7 @@ function! PhpunitTestFunction()
     endif
 
     silent !clear
-    execute '!bin/phpunit -c app --filter '.l:phpFunc
+    execute '!'.g:phpunit_bin.' '.g:phpunit_opts.' --filter '.l:phpFunc
 endfunction
 
 
@@ -25,7 +34,7 @@ function! PhpunitTestClass()
     let l:filename=@%
 
     silent !clear
-    execute '!bin/phpunit -c app '.l:filename
+    execute '!'.g:phpunit_bin.' '.g:phpunit_opts.' '.l:filename
 endfunction
 
 
