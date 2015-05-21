@@ -7,7 +7,7 @@ function! PhpunitTestFunction()
     " let col = col(".")
 
     " TODO: duplicate regex, this can be done better
-    let l:phpFuncDef = getline(search('^\s*public\s\+function\s\+\([^(]\+\)\s*.*$', 'nbW'))
+    let l:phpFuncDef = getline(search('^\s*public\s\+function\s\+\(test[^(]\+\)\s*.*$', 'nbW'))
     let l:phpFunc = system("sed -n '".'s#^\s*public\s\+function\s\+\([^(]\+\).*$#\1#p'."' <<<'".l:phpFuncDef."'")
 
     silent !clear
