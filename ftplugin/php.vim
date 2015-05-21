@@ -10,6 +10,11 @@ function! PhpunitTestFunction()
     let l:phpFuncDef = getline(search('^\s*public\s\+function\s\+\(test[^(]\+\)\s*.*$', 'nbW'))
     let l:phpFunc = system("sed -n '".'s#^\s*public\s\+function\s\+\([^(]\+\).*$#\1#p'."' <<<'".l:phpFuncDef."'")
 
+    if empty(l:phpFunc)
+        echomsg "Could not find a test function under the cursor"
+        return
+    endif
+
     silent !clear
     execute '!bin/phpunit -c app --filter '.l:phpFunc
 endfunction
